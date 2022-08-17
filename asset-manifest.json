@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/my-order/static/css/main.abd64e84.css",
+    "main.js": "/my-order/static/js/main.b1572b5b.js",
+    "index.html": "/my-order/index.html",
+    "main.abd64e84.css.map": "/my-order/static/css/main.abd64e84.css.map",
+    "main.b1572b5b.js.map": "/my-order/static/js/main.b1572b5b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.abd64e84.css",
+    "static/js/main.b1572b5b.js"
+  ]
+}
