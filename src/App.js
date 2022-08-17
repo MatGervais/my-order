@@ -1,23 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
 
+import medocs from "./data/medocs.json"
+import Item from './components/Item';
+
 function App() {
+  console.log(medocs);
+  const maDate = "2012-04-23T18:25:43.511Z"
+  console.log(new Date(maDate).toLocaleString());
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        {medocs.map((medoc,idx)=>(
+          <Item key={idx} name={medoc.name} prescPerDay={medoc.prescription_per_day} renewed={medoc.renewed} stock={medoc.stock} />
+        ))}
     </div>
   );
 }
