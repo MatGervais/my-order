@@ -1,32 +1,23 @@
 import React, {useEffect, useState} from 'react';
+import moment from 'moment';
 
 const Item = ({name,stock,renewed,prescPerDay}) => {
 
     const [toRenew, setRenew]=useState(new Date(renewed).toLocaleDateString())
     const [daysRemaining, setDaysRemaining] = useState(0)
 
-    function addDaysToDate(date, days){
-        var res = new Date(date);
-        res.setDate(res.getDate() + days);
-        return res;
-    }
 
     useEffect(()=>{
-        function toRenewFunction(){
-            var nbJourRestant = Math.trunc(stock/prescPerDay)
-            var addedDays = addDaysToDate(renewed,nbJourRestant)
-            console.log(addedDays);
-            setRenew(addedDays)
-        }
-        toRenewFunction()
-        console.log(toRenew);
-        console.log(new Date(renewed));
-        const diffTime = Math.abs(toRenew - new Date(renewed));
-        console.log(diffTime);
+      function toRenewFunction(){
+        var nbJourRestant = Math.trunc(stock/prescPerDay)
+        setRenew(moment(moment(renewed).add(nbJourRestant, 'days').format("YYYY-MM-DDTHH:mm:ss.SSSSZ"))._i)
+        // console.log(moment(moment(moment(item.renewed).add(nbJourRestant, 'days').format("YYYY-MM-DDTHH:mm:ss.SSSSZ"))._i))
+    }
+    toRenewFunction()
+        const diffTime = Math.abs(new Date(toRenew) - new Date());
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        console.log(diffDays);
         setDaysRemaining(diffDays)
-    },[toRenew, stock, prescPerDay,renewed])
+    },[toRenew])
     
     return (
       <div className={`card ${daysRemaining < 14 ? "border-danger" : ""} col-md-3 m-3`}>

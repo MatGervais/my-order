@@ -1,17 +1,46 @@
 import './App.css';
-
+import { useState } from 'react';
 import medocs from "./data/medocs.json"
 import Item from './components/Item';
+import TableRow from './components/TableRow';
 
 function App() {
-  console.log(medocs);
-  const maDate = "2012-04-23T18:25:43.511Z"
-  console.log(new Date(maDate).toLocaleString());
+
+  const [view,setView] = useState("gallery")
+
+  function changeView(){
+    if(view === "gallery"){
+      setView("table")
+    }
+    else setView('gallery')
+  }
   return (
     <div className="App">
-        {medocs.map((medoc,idx)=>(
-          <Item key={idx} name={medoc.name} prescPerDay={medoc.prescription_per_day} renewed={medoc.renewed} stock={medoc.stock} />
-        ))}
+      <button onClick={changeView} className='btn btn-primary'>{view === "gallery" ? "Tableau":"Galerie"}</button>
+      {/* {new Date().toLocaleDateString()} */}
+        {view==="gallery" ? (
+          medocs.map((medoc,idx)=>(
+            <Item key={idx} name={medoc.name} prescPerDay={medoc.prescription_per_day} renewed={medoc.renewed} stock={medoc.stock} />
+          ))
+        )
+        :(
+          <table className='table'>
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Renouvelé le</th>
+                <th>À renouveler dans</th>
+              </tr>
+            </thead>
+            <tbody>
+             {medocs.map((medoc,key)=>
+              <TableRow key={key} item={medoc}/>
+            )}
+
+            </tbody>
+          </table>
+        )
+        }  
     </div>
   );
 }
