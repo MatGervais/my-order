@@ -28,7 +28,7 @@ function App() {
             <thead>
               <tr>
                 <th>Nom</th>
-                <th>Renouvelé le</th>
+                <th>Inventaire fait le</th>
                 <th>À renouveler dans</th>
               </tr>
             </thead>

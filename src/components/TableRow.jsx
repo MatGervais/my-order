@@ -9,7 +9,7 @@ const TableRow = ({item}) => {
         function toRenewFunction(){
             var nbJourRestant = Math.trunc(item.stock/item.prescription_per_day)
             setRenew(moment(moment(item.renewed).add(nbJourRestant, 'days').format("YYYY-MM-DDTHH:mm:ss.SSSSZ"))._i)
-            // console.log(moment(moment(moment(item.renewed).add(nbJourRestant, 'days').format("YYYY-MM-DDTHH:mm:ss.SSSSZ"))._i))
+            // console.log(moment(moment(moment(item.renewed).add(nbJourRestant, 'days').format("YYYY-MM-DDTHH:mm:ss.SSSSZ"))._i)._i)
         }
         toRenewFunction()
 
